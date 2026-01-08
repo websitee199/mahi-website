@@ -31,7 +31,7 @@ updateCountdown();
 const chatBox = document.getElementById("chat-box");
 const userInput = document.getElementById("user-input");
 const sendBtn = document.getElementById("send-btn");
-const voiceBtn = document.getElementById("voice-btn");
+//const voiceBtn = document.getElementById("voice-btn");
 
 // Basic responses
 function getResponse(message) {
@@ -87,3 +87,4 @@ voiceBtn.addEventListener("click", function() {
         alert("Voice recognition error: " + event.error);
     }
 });
+
