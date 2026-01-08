@@ -24,7 +24,7 @@ const countdownFunction = setInterval(() => {
 
 // Google Form Button
 function openGoogleForm(){
-    window.open("https://forms.gle/YOUR_GOOGLE_FORM_LINK", "_blank");
+    window.open("https://forms.gle/https://forms.gle/V7dcRVL6t5EgNPCF8");
 }
 
 // Chatbot
@@ -87,4 +87,5 @@ function handleBotResponse(text){
         showBotMessage("I'm here to help! You can ask me about the date, time, venue, contact person, or route to Chittoor.");
     }
 }
+
 
