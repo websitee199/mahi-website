@@ -24,20 +24,21 @@ const countdownFunction = setInterval(() => {
 
 // Google Form Button
 function openGoogleForm(){
-    window.open("https://forms.gle/https://forms.gle/V7dcRVL6t5EgNPCF8");
+    window.open("https://forms.gle/YOUR_GOOGLE_FORM_LINK", "_blank");
 }
 
 // Chatbot
 const messages = document.getElementById("chatbot-messages");
 
-const botIntro = [
-    "Hello! I am MAHI 🤖, your friendly assistant!",
-    "Our reunion is on 17th Jan 2026, Saturday at Chittoor, Andhra Pradesh.",
-    "The contact person is Mahesh Babu. Feel free to reach out!",
-    "I can also guide you with the route to reach Chittoor.",
-];
-
-let botIndex = 0;
+// Web Speech API function
+function speak(text){
+    if('speechSynthesis' in window){
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 1; // speed
+        speechSynthesis.speak(utterance);
+    }
+}
 
 function showBotMessage(text){
     const div = document.createElement("div");
@@ -45,6 +46,7 @@ function showBotMessage(text){
     div.innerText = text;
     messages.appendChild(div);
     messages.scrollTop = messages.scrollHeight;
+    speak(text); // MAHI speaks the message
 }
 
 function showUserMessage(text){
@@ -68,8 +70,15 @@ function sendMessage(){
 }
 
 // Initial Bot Messages
+const botIntro = [
+    "Hello! I am MAHI, your friendly assistant!",
+    "Our reunion is on 17th Jan 2026, Saturday at Chittoor, Andhra Pradesh.",
+    "The contact person is Mahesh Babu. Feel free to reach out!",
+    "I can also guide you with the route to reach Chittoor."
+];
+
 botIntro.forEach((msg, index) => {
-    setTimeout(() => showBotMessage(msg), index * 1200);
+    setTimeout(() => showBotMessage(msg), index * 1500);
 });
 
 function handleBotResponse(text){
@@ -87,5 +96,3 @@ function handleBotResponse(text){
         showBotMessage("I'm here to help! You can ask me about the date, time, venue, contact person, or route to Chittoor.");
     }
 }
-
-
