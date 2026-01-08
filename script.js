@@ -1,90 +1,90 @@
-// -----------------------
 // Countdown Timer
-// -----------------------
-const countdownEl = document.getElementById("countdown");
-const eventDate = new Date("January 17, 2026 11:00:00").getTime();
+const countdownDate = new Date("Jan 17, 2026 09:00:00").getTime();
 
-function updateCountdown() {
+const countdownFunction = setInterval(() => {
     const now = new Date().getTime();
-    const distance = eventDate - now;
+    const distance = countdownDate - now;
 
-    if(distance < 0) {
-        countdownEl.innerHTML = "The event has started!";
-        clearInterval(countdownInterval);
+    if(distance < 0){
+        clearInterval(countdownFunction);
+        document.getElementById("countdown").innerHTML = "The Reunion is Here!";
         return;
     }
 
-    const days = Math.floor(distance / (1000*60*60*24));
-    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-    const seconds = Math.floor((distance % (1000*60)) / 1000);
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24))/(1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60))/(1000*60));
+    const seconds = Math.floor((distance % (1000*60))/1000);
 
-    countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
+    document.getElementById("seconds").innerText = seconds;
+}, 1000);
+
+// Google Form Button
+function openGoogleForm(){
+    window.open("https://forms.gle/YOUR_GOOGLE_FORM_LINK", "_blank");
 }
 
-const countdownInterval = setInterval(updateCountdown, 1000);
-updateCountdown();
+// Chatbot
+const messages = document.getElementById("chatbot-messages");
 
-// -----------------------
-// Mahi Voice Chatbot
-// -----------------------
-const chatBox = document.getElementById("chat-box");
-const userInput = document.getElementById("user-input");
-const sendBtn = document.getElementById("send-btn");
-//const voiceBtn = document.getElementById("voice-btn");
+const botIntro = [
+    "Hello! I am MAHI 🤖, your friendly assistant!",
+    "Our reunion is on 17th Jan 2026, Saturday at Chittoor, Andhra Pradesh.",
+    "The contact person is Mahesh Babu. Feel free to reach out!",
+    "I can also guide you with the route to reach Chittoor.",
+];
 
-// Basic responses
-function getResponse(message) {
-    message = message.toLowerCase();
-    if(message.includes("hello") || message.includes("hi")) return "Hello! I'm Mahi. How can I help you?";
-    if(message.includes("event") || message.includes("date")) return "The event is on 17 January 2026, Saturday at 11:00 AM in Chittoor.";
-    if(message.includes("time")) return "The event starts at 11:00 AM.";
-    if(message.includes("place") || message.includes("location") || message.includes("chittoor")) return "The event location is Chittoor.";
-    return "Sorry, I didn't understand that. You can ask me about the event date, time, or location.";
+let botIndex = 0;
+
+function showBotMessage(text){
+    const div = document.createElement("div");
+    div.classList.add("message", "bot-message");
+    div.innerText = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
 }
 
-// Display message and speak
-function displayMessage(message, sender="Mahi") {
-    const msgEl = document.createElement("p");
-    msgEl.innerHTML = `<strong>${sender}:</strong> ${message}`;
-    chatBox.appendChild(msgEl);
-    chatBox.scrollTop = chatBox.scrollHeight;
-
-    if(sender === "Mahi") {
-        // Voice output
-        const utterance = new SpeechSynthesisUtterance(message);
-        window.speechSynthesis.speak(utterance);
-    }
+function showUserMessage(text){
+    const div = document.createElement("div");
+    div.classList.add("message", "user-message");
+    div.innerText = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
 }
 
-// Send user message
-function sendMessage() {
-    const message = userInput.value.trim();
-    if(!message) return;
-    displayMessage(message, "You");
-    userInput.value = "";
-    const reply = getResponse(message);
-    displayMessage(reply);
+function sendMessage(){
+    const input = document.getElementById("user-input");
+    const text = input.value.trim();
+    if(!text) return;
+    showUserMessage(text);
+    input.value = "";
+
+    setTimeout(() => {
+        handleBotResponse(text.toLowerCase());
+    }, 500);
 }
 
-sendBtn.addEventListener("click", sendMessage);
-userInput.addEventListener("keypress", function(e) {
-    if(e.key === "Enter") sendMessage();
+// Initial Bot Messages
+botIntro.forEach((msg, index) => {
+    setTimeout(() => showBotMessage(msg), index * 1200);
 });
 
-// Voice input
-voiceBtn.addEventListener("click", function() {
-    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    recognition.lang = "en-US";
-    recognition.start();
-
-    recognition.onresult = function(event) {
-        const transcript = event.results[0][0].transcript;
-        userInput.value = transcript;
-        sendMessage();
-    };
-    recognition.onerror = function(event) {
-        alert("Voice recognition error: " + event.error);
+function handleBotResponse(text){
+    if(text.includes("venue") || text.includes("where")){
+        showBotMessage("The reunion venue is in Chittoor, Andhra Pradesh. The exact location is on the map above.");
+    } else if(text.includes("time") || text.includes("when")){
+        showBotMessage("The event starts at 9:00 AM on 17th January 2026, Saturday.");
+    } else if(text.includes("contact") || text.includes("person")){
+        showBotMessage("You can contact Mahesh Babu for any queries regarding the reunion.");
+    } else if(text.includes("route") || text.includes("how to reach")){
+        showBotMessage("You can use the Google Map above to navigate to Chittoor from your location. Just click on Directions.");
+    } else if(text.includes("hello") || text.includes("hi")){
+        showBotMessage("Hello! Excited to see you at the reunion!");
+    } else {
+        showBotMessage("I'm here to help! You can ask me about the date, time, venue, contact person, or route to Chittoor.");
     }
-});
+}
 
