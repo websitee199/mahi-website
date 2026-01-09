@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCA Reunion – Chittoor</title>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Segoe UI,Arial;
+background:linear-gradient(135deg,#0b3c5d,#0f9b8e,#2ecc71);
+color:#fff;
+overflow-x:hidden;
+}
+#particles-js{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+/* HEADER */
+header{
+text-align:center;
+padding:25px;
+background:rgba(0,0,0,.35);
+}
+header h1{
+color:red;
+font-weight:900;
+letter-spacing:3px;
+margin:0;
+}
+header p{
+margin:5px 0 0;
+font-weight:bold;
+}
+
+/* NAV */
+nav{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+padding:15px;
+}
+nav button{
+padding:12px 22px;
+border-radius:30px;
+border:none;
+cursor:pointer;
+background:#2ecc71;
+font-weight:bold;
+transition:.4s;
+}
+nav button:hover{
+background:#00e5ff;
+transform:scale(1.1);
+}
+
+/* SECTIONS */
+.section{display:none;padding:20px;animation:fade .6s}
+.section.active{display:block}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+.card{
+max-width:900px;
+margin:auto;
+background:rgba(255,255,255,.15);
+padding:25px;
+border-radius:20px;
+text-align:center;
+backdrop-filter: blur(6px);
+}
+
+/* HOME TITLE */
+.home-title{
+color:red;
+font-weight:900;
+letter-spacing:2px;
+}
+
+/* COUNTDOWN */
+.timer{
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+margin-top:20px;
+}
+.time-box{
+width:110px;
+height:110px;
+background:rgba(0,0,0,.45);
+border:2px solid #2ecc71;
+border-radius:15px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+font-size:16px;
+transition:.4s;
+cursor:pointer;
+}
+.time-box span{
+font-size:36px;
+font-weight:bold;
+}
+.time-box:hover{
+background:#2ecc71;
+color:#003b2f;
+transform:scale(1.1);
+}
+
+/* CHATBOT */
+#bot-btn{
+position:fixed;
+bottom:20px;
+right:20px;
+width:70px;
+height:70px;
+border-radius:50%;
+background:#2ecc71;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:36px;
+cursor:pointer;
+box-shadow:0 0 30px #2ecc71;
+z-index:99;
+}
+#bot{
+position:fixed;
+bottom:100px;
+right:20px;
+width:300px;
+background:#062f2b;
+border-radius:20px;
+display:none;
+padding:15px;
+z-index:99;
+}
+#chatlog{
+height:200px;
+overflow-y:auto;
+font-size:14px;
+text-align:left;
+}
+.chat{margin:6px 0}
+.user{color:#00e5ff}
+.bot{color:#2ecc71}
+#chatInput{
+width:100%;
+padding:10px;
+border-radius:10px;
+border:none;
+margin-top:5px;
+background:#ffffff;
+color:#000000;
+}
+.submit{
+margin-top:5px;
+padding:10px 18px;
+border:none;
+border-radius:20px;
+background:#2ecc71;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+.time-box{width:90px;height:90px}
+header h1{font-size:22px}
+}
+iframe{border-radius:20px;width:100%}
+</style>
+</head>
+
+<body>
+<div id="particles-js"></div>
+
+<header>
+<h1>BCA BATCH RE-UNION</h1>
+<p>PCR CHITTOOR • 17 JAN 2026 • 11:00 AM</p>
+</header>
+
+<nav>
+<button onclick="tab('home')">Home</button>
+<button onclick="tab('event')">Event</button>
+<button onclick="tab('count')">Countdown</button>
+<button onclick="tab('register')">Registration</button>
+<button onclick="tab('map')">Map</button>
+<button onclick="tab('contact')">Contact</button>
+</nav>
+
+<div id="home" class="section active">
+<div class="card">
+<h2 class="home-title">WELCOME TO BCA REUNION</h2>
+<p>Reconnect • Relive • Celebrate</p>
+<p>Click 🤖 and talk to <b>Mahi – Voice Assistant</b></p>
+</div>
+</div>
+
+<div id="event" class="section">
+<div class="card">
+<h2>Event Details</h2>
+<p>BCA Batch Reunion</p>
+<p>17 January 2026 | 11:00 AM</p>
+<p>PCR Auditorium, Chittoor</p>
+</div>
+</div>
+
+<div id="count" class="section">
+<div class="card">
+<h2>Countdown to Reunion</h2>
+<div class="timer">
+<div class="time-box" onmouseover="speakBox('days')"><span id="d">0</span>Days</div>
+<div class="time-box" onmouseover="speakBox('hours')"><span id="h">0</span>Hours</div>
+<div class="time-box" onmouseover="speakBox('minutes')"><span id="m">0</span>Minutes</div>
+<div class="time-box" onmouseover="speakBox('seconds')"><span id="s">0</span>Seconds</div>
+</div>
+</div>
+</div>
+
+<div id="register" class="section">
+<div class="card">
+<h2>Register Now</h2>
+<a href="https://forms.gle/VfE8YX84NwDmpg3G8" target="_blank">
+<button class="submit">Open Google Registration Form</button>
+</a>
+<br><br>
+<iframe src="https://forms.gle/VfE8YX84NwDmpg3G8?embedded=true" height="450"></iframe>
+<div id="qrcode"></div>
+</div>
+</div>
+
+<div id="map" class="section">
+<div class="card">
+<iframe height="350"
+src="https://www.google.com/maps?q=PCR%20Chittoor&output=embed"></iframe>
+</div>
+</div>
+
+<div id="contact" class="section">
+<div class="card">
+<h2>Contact Us</h2>
+<p><b>Name:</b> Mahesh Babu</p>
+<p><b>Email:</b>
+<a href="mailto:finetechgroup009@gmail.com" style="color:#00e5ff">
+finetechgroup009@gmail.com
+</a>
+</p>
+</div>
+</div>
+
+<!-- CHATBOT -->
+<div id="bot-btn" onclick="toggleBot()">🤖</div>
+<div id="bot">
+<h3>Mahi – Assistant</h3>
+<div id="chatlog"></div>
+<input id="chatInput" placeholder="Type here...">
+<button class="submit" onclick="send()">Send</button>
+<button class="submit" onclick="listen()">🎤</button>
+</div>
+
+<script>
+/* TABS */
+function tab(id){
+document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+
+/* COUNTDOWN */
+const eDate=new Date("Jan 17 2026 11:00:00").getTime();
+setInterval(()=>{
+let d=eDate-Date.now();
+if(d>0){
+document.getElementById("d").innerText=Math.floor(d/86400000);
+document.getElementById("h").innerText=Math.floor(d%86400000/3600000);
+document.getElementById("m").innerText=Math.floor(d%3600000/60000);
+document.getElementById("s").innerText=Math.floor(d%60000/1000);
+}
+},1000);
+
+/* VOICE FOR TIMER */
+function speakBox(type){
+let id=type[0];
+let val=document.getElementById(id).innerText;
+let text=val+" "+type;
+speechSynthesis.cancel();
+speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+}
+
+/* CHATBOT */
+let opened=false;
+function toggleBot(){
+bot.style.display=opened?"none":"block";
+opened=!opened;
+
+/* INTRO VOICE EVERY TIME */
+if(opened){
+let intro="Hi, I am Mahi, your reunion assistant. You can ask me about event details, venue, route to Chittoor, or registration help.";
+add("bot",intro);
+speechSynthesis.cancel();
+speechSynthesis.speak(new SpeechSynthesisUtterance(intro));
+}
+}
+
+function add(who,msg){
+chatlog.innerHTML+=`<div class="chat ${who}">${msg}</div>`;
+chatlog.scrollTop=9999;
+}
+
+function send(){
+let m=chatInput.value.toLowerCase();
+if(!m)return;
+add("user",m);
+let r="Sorry, I didn't understand.";
+if(/event/.test(m)) r="The reunion is on seventeenth January two thousand twenty six.";
+else if(/venue|place/.test(m)) r="The venue is PCR Auditorium, Chittoor.";
+else if(/route|chittoor/.test(m)) r="You can reach Chittoor via Tirupati, Vellore or Bangalore.";
+else if(/registration help|register/.test(m)) r="Please click on the Registration tab to fill the Google form.";
+add("bot",r);
+speechSynthesis.speak(new SpeechSynthesisUtterance(r));
+chatInput.value="";
+}
+
+function listen(){
+let r=new (webkitSpeechRecognition||SpeechRecognition)();
+r.lang="en-IN";
+r.start();
+r.onresult=e=>{
+chatInput.value=e.results[0][0].transcript;
+send();
+}
+}
+
+/* PARTICLES */
+particlesJS("particles-js",{
+particles:{number:{value:80},color:{value:"#2ecc71"},move:{speed:2}}
+});
+
+/* QR */
+new QRCode(document.getElementById("qrcode"),{
+text:"BCA Reunion – PCR Chittoor – 17 Jan 2026",
+width:150,height:150
+});
+</script>
+
+</body>
+</html>
