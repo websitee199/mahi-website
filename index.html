@@ -1,107 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BCA Reunion – Chittoor</title>
-
-<!-- External CSS -->
-<link rel="stylesheet" href="style.css">
-
-<!-- Libraries -->
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Welcome | Mahesh Babu</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div id="particles-js"></div>
-
-<header>
-<h1>BCA BATCH RE-UNION</h1>
-<p>PCR CHITTOOR • 17 JAN 2026 • 11:00 AM</p>
+<header class="banner">
+  <h1>🚀 Welcome to My Newly Launched Website</h1>
+  <p>Interactive website with voice assistant and 3D avatar</p>
 </header>
 
-<nav>
-<button onclick="tab('home')">Home</button>
-<button onclick="tab('event')">Event</button>
-<button onclick="tab('count')">Countdown</button>
-<button onclick="tab('register')">Registration</button>
-<button onclick="tab('map')">Map</button>
-<button onclick="tab('contact')">Contact</button>
+<nav class="nav">
+  <button onclick="openTab('home')">Home</button>
+  <button onclick="openTab('quotes')">Quotes</button>
+  <button onclick="openTab('contact')">Contact</button>
 </nav>
 
-<div id="home" class="section active">
-<div class="card">
-<h2 class="home-title">WELCOME TO BCA REUNION</h2>
-<p>Reconnect • Relive • Celebrate</p>
-<p>Click 🤖 and talk to <b>Mahi – Voice Assistant</b></p>
-</div>
-</div>
+<section id="home" class="section active">
+  <div class="assistant">
+    <div class="avatar" id="avatar"></div>
 
-<div id="event" class="section">
-<div class="card">
-<h2>Event Details</h2>
-<p>BCA Batch Reunion</p>
-<p>17 January 2026 | 11:00 AM</p>
-<p>PCR Auditorium, Chittoor</p>
-</div>
-</div>
+    <div class="chat">
+      <input id="userInput" placeholder="Type hello / hai / website">
+      <button onclick="assistantTalk()">Talk</button>
+      <p id="reply"></p>
+    </div>
+  </div>
+</section>
 
-<div id="count" class="section">
-<div class="card">
-<h2>Countdown to Reunion</h2>
-<div class="timer">
-<div class="time-box" onmouseover="speakBox('days')"><span id="d">0</span>Days</div>
-<div class="time-box" onmouseover="speakBox('hours')"><span id="h">0</span>Hours</div>
-<div class="time-box" onmouseover="speakBox('minutes')"><span id="m">0</span>Minutes</div>
-<div class="time-box" onmouseover="speakBox('seconds')"><span id="s">0</span>Seconds</div>
-</div>
-</div>
-</div>
+<section id="quotes" class="section">
+  <h2>✨ Quotes Section</h2>
+  <div class="quote-box">
+    <input placeholder="Enter quote">
+    <input placeholder="Another quote">
+    <input placeholder="Your thoughts">
+  </div>
+</section>
 
-<div id="register" class="section">
-<div class="card">
-<h2>Register Now</h2>
-<a href="https://forms.gle/VfE8YX84NwDmpg3G8" target="_blank">
-<button class="submit">Open Google Registration Form</button>
-</a>
-<br><br>
-<iframe src="https://forms.gle/VfE8YX84NwDmpg3G8?embedded=true" height="450"></iframe>
-<div id="qrcode"></div>
-</div>
-</div>
+<section id="contact" class="section">
+  <h2>📞 Contact</h2>
+  <p>Email: example@email.com</p>
+  <p>Phone: +91 XXXXX XXXXX</p>
+</section>
 
-<div id="map" class="section">
-<div class="card">
-<iframe height="350"
-src="https://www.google.com/maps?q=PCR%20Chittoor&output=embed"></iframe>
-</div>
-</div>
+<footer>
+  © 2026 Mahesh Babu. All Rights Reserved.
+</footer>
 
-<div id="contact" class="section">
-<div class="card">
-<h2>Contact Us</h2>
-<p><b>Name:</b> Mahesh Babu</p>
-<p><b>Email:</b>
-<a href="mailto:finetechgroup009@gmail.com">
-finetechgroup009@gmail.com
-</a>
-</p>
-</div>
-</div>
-
-<!-- CHATBOT -->
-<div id="bot-btn" onclick="toggleBot()">🤖</div>
-<div id="bot">
-<h3>Mahi – Assistant</h3>
-<div id="chatlog"></div>
-<input id="chatInput" placeholder="Type here...">
-<button class="submit" onclick="send()">Send</button>
-<button class="submit" onclick="listen()">🎤</button>
-</div>
-
-<!-- External JS -->
 <script src="script.js"></script>
 </body>
 </html>
+
