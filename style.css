@@ -1,181 +1,112 @@
-*{box-sizing:border-box}
-body{
-margin:0;
-font-family:Segoe UI,Arial;
-background:linear-gradient(135deg,#0b3c5d,#0f9b8e,#2ecc71);
-color:#fff;
-overflow-x:hidden;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: white;
 }
 
-#particles-js{
-position:fixed;
-width:100%;
-height:100%;
-z-index:-1;
+.banner {
+  text-align: center;
+  padding: 60px;
+  background: rgba(0,0,0,0.4);
 }
 
-/* HEADER */
-header{
-text-align:center;
-padding:25px;
-background:rgba(0,0,0,.35);
-}
-header h1{
-color:red;
-font-weight:900;
-letter-spacing:3px;
-margin:0;
-}
-header p{
-margin:5px 0 0;
-font-weight:bold;
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 15px;
 }
 
-/* NAV */
-nav{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:10px;
-padding:15px;
-}
-nav button{
-padding:12px 22px;
-border-radius:30px;
-border:none;
-cursor:pointer;
-background:#2ecc71;
-font-weight:bold;
-transition:.4s;
-}
-nav button:hover{
-background:#00e5ff;
-transform:scale(1.1);
+.nav button {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 20px;
+  background: #00c6ff;
+  cursor: pointer;
 }
 
-/* SECTIONS */
-.section{
-display:none;
-padding:20px;
-animation:fade .6s;
-}
-.section.active{display:block}
-@keyframes fade{from{opacity:0}to{opacity:1}}
-
-.card{
-max-width:900px;
-margin:auto;
-background:rgba(255,255,255,.15);
-padding:25px;
-border-radius:20px;
-text-align:center;
-backdrop-filter: blur(6px);
+.section {
+  display: none;
+  padding: 40px;
 }
 
-/* HOME TITLE */
-.home-title{
-color:red;
-font-weight:900;
-letter-spacing:2px;
+.section.active {
+  display: block;
 }
 
-/* COUNTDOWN */
-.timer{
-display:flex;
-justify-content:center;
-gap:15px;
-flex-wrap:wrap;
-margin-top:20px;
-}
-.time-box{
-width:110px;
-height:110px;
-background:rgba(0,0,0,.45);
-border:2px solid #2ecc71;
-border-radius:15px;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-font-size:16px;
-transition:.4s;
-cursor:pointer;
-}
-.time-box span{
-font-size:36px;
-font-weight:bold;
-}
-.time-box:hover{
-background:#2ecc71;
-color:#003b2f;
-transform:scale(1.1);
+.assistant {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
 }
 
-/* CHATBOT */
-#bot-btn{
-position:fixed;
-bottom:20px;
-right:20px;
-width:70px;
-height:70px;
-border-radius:50%;
-background:#2ecc71;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:36px;
-cursor:pointer;
-box-shadow:0 0 30px #2ecc71;
-z-index:99;
-}
-#bot{
-position:fixed;
-bottom:100px;
-right:20px;
-width:300px;
-background:#062f2b;
-border-radius:20px;
-display:none;
-padding:15px;
-z-index:99;
-}
-#chatlog{
-height:200px;
-overflow-y:auto;
-font-size:14px;
-text-align:left;
-}
-.chat{margin:6px 0}
-.user{color:#00e5ff}
-.bot{color:#2ecc71}
-#chatInput{
-width:100%;
-padding:10px;
-border-radius:10px;
-border:none;
-margin-top:5px;
-background:#ffffff;
-color:#000000;
-}
-.submit{
-margin-top:5px;
-padding:10px 18px;
-border:none;
-border-radius:20px;
-background:#2ecc71;
-font-weight:bold;
-cursor:pointer;
+.avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #00c6ff, #0072ff);
+  animation: idle 3s infinite;
 }
 
-/* RESPONSIVE */
-@media(max-width:600px){
-.time-box{width:90px;height:90px}
-header h1{font-size:22px}
+.avatar.talking {
+  animation: talk 0.3s infinite;
 }
 
-iframe{
-border-radius:20px;
-width:100%;
+@keyframes idle {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
 }
 
+@keyframes talk {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+.chat input {
+  padding: 12px;
+  width: 260px;
+  border-radius: 10px;
+  border: none;
+}
+
+.chat button {
+  padding: 12px 20px;
+}
+
+.quote-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 200px);
+  gap: 20px;
+}
+
+.quote-box input {
+  height: 80px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+.social {
+  display: flex;
+  gap: 30px;
+}
+
+.card {
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.card img {
+  width: 60px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.4);
+}
 
