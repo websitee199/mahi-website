@@ -1,53 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Welcome | Mahesh Babu</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>AI Voice Assistant</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="banner">
-  <h1>🚀 Welcome to My Newly Launched Website</h1>
-  <p>Interactive website with voice assistant and 3D avatar</p>
-</header>
-
-<nav class="nav">
-  <button onclick="openTab('home')">Home</button>
-  <button onclick="openTab('quotes')">Quotes</button>
-  <button onclick="openTab('contact')">Contact</button>
-</nav>
-
-<section id="home" class="section active">
-  <div class="assistant">
-    <div class="avatar" id="avatar"></div>
-
-    <div class="chat">
-      <input id="userInput" placeholder="Type hello / hai / website">
-      <button onclick="assistantTalk()">Talk</button>
-      <p id="reply"></p>
+<div class="container">
+    
+    <div class="avatar-container">
+        <img src="avatar.gif" alt="Assistant" class="avatar" id="avatar">
     </div>
-  </div>
-</section>
 
-<section id="quotes" class="section">
-  <h2>✨ Quotes Section</h2>
-  <div class="quote-box">
-    <input placeholder="Enter quote">
-    <input placeholder="Another quote">
-    <input placeholder="Your thoughts">
-  </div>
-</section>
+    <div class="chat-box">
+        <p id="botText">Loading...</p>
+    </div>
 
-<section id="contact" class="section">
-  <h2>📞 Contact</h2>
-  <p>Email: example@email.com</p>
-  <p>Phone: +91 XXXXX XXXXX</p>
-</section>
+    <button id="startBtn">🎤 Speak</button>
 
-<footer>
-  © 2026 Mahesh Babu. All Rights Reserved.
-</footer>
+</div>
 
 <script src="script.js"></script>
 </body>
