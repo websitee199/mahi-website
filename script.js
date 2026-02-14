@@ -1,31 +1,43 @@
-function openTab(id) {
-  document.querySelectorAll(".section")
-    .forEach(sec => sec.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
+const botText = document.getElementById("botText");
+const startBtn = document.getElementById("startBtn");
+
+let userName = "";
+let step = 0;
+
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+
+recognition.lang = "en-US";
+
+function speak(text) {
+    const speech = new SpeechSynthesisUtterance(text);
+    speech.lang = "en-US";
+    speech.rate = 1;
+    speech.pitch = 1;
+    window.speechSynthesis.speak(speech);
+    botText.innerText = text;
 }
 
-function assistantTalk() {
-  const input = document.getElementById("userInput").value.toLowerCase();
-  const avatar = document.getElementById("avatar");
-  const reply = document.getElementById("reply");
+window.onload = () => {
+    setTimeout(() => {
+        speak("Hi, what is your name?");
+        step = 1;
+    }, 1000);
+};
 
-  let text = "";
+startBtn.onclick = () => {
+    recognition.start();
+};
 
-  if (input.includes("hello") || input.includes("hai")) {
-    text = "Hello! Welcome to Mahesh Babu's newly launched interactive website.";
-  } 
-  else if (input.includes("website")) {
-    text = "This website includes a modern design, voice assistant, 3D avatar, and interactive sections.";
-  } 
-  else {
-    text = "I am your virtual assistant. Ask me about this website.";
-  }
+recognition.onresult = function(event) {
+    const transcript = event.results[0][0].transcript;
 
-  avatar.classList.add("talking");
-  reply.innerText = text;
-
-  const speech = new SpeechSynthesisUtterance(text);
-  speech.onend = () => avatar.classList.remove("talking");
-  speechSynthesis.speak(speech);
-}
+    if (step === 1) {
+        userName = transcript;
+        speak("Nice to meet you " + userName + 
+              ". Welcome to our newly launched website. " +
+              "This platform is designed to provide interactive experiences, smart solutions, and modern digital services.");
+        step = 2;
+    }
+};
 
