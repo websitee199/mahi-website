@@ -1,121 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mahesh | SAP Analytics Cloud Experience</title>
+    <meta charset="UTF-8">
+    <title>Mahesh | SAP Analytics Cloud</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
-
-body{
-    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-    color:white;
-    overflow-x:hidden;
-}
-
-header{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-}
-
-h1{
-    font-size:50px;
-    letter-spacing:2px;
-}
-
-.glow{
-    color:#00f2ff;
-    text-shadow:0 0 10px #00f2ff, 0 0 20px #00f2ff;
-}
-
-.subtitle{
-    margin-top:20px;
-    font-weight:300;
-    font-size:18px;
-    opacity:0.8;
-}
-
-.btn{
-    margin-top:40px;
-    padding:12px 30px;
-    border:2px solid #00f2ff;
-    border-radius:30px;
-    text-decoration:none;
-    color:#00f2ff;
-    transition:0.4s;
-}
-
-.btn:hover{
-    background:#00f2ff;
-    color:#000;
-    box-shadow:0 0 20px #00f2ff;
-}
-
-section{
-    padding:80px 10%;
-}
-
-.section-title{
-    font-size:35px;
-    margin-bottom:50px;
-    text-align:center;
-}
-
-.cards{
-    display:flex;
-    gap:30px;
-    flex-wrap:wrap;
-    justify-content:center;
-}
-
-.card{
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(10px);
-    border-radius:20px;
-    padding:30px;
-    width:280px;
-    transition:0.4s;
-    border:1px solid rgba(255,255,255,0.2);
-}
-
-.card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 0 25px #00f2ff;
-}
-
-.kpi{
-    font-size:40px;
-    font-weight:700;
-    color:#00f2ff;
-}
-
-.timeline{
-    border-left:2px solid #00f2ff;
-    padding-left:30px;
-}
-
-.timeline-item{
-    margin-bottom:40px;
-}
-
-footer{
-    text-align:center;
-    padding:40px;
-    background:#0a1a24;
-}
-</style>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -123,7 +18,9 @@ footer{
 <header>
     <h1>MAHESH BABU</h1>
     <h1 class="glow">SAP Analytics Cloud Specialist</h1>
-    <p class="subtitle">Planning | Reporting | Data Actions | Advanced Formulas</p>
+    <p class="subtitle">
+        Planning | Reporting | Data Actions | Advanced Formulas
+    </p>
     <a href="#skills" class="btn">Explore My SAC World</a>
 </header>
 
@@ -148,7 +45,7 @@ footer{
 </section>
 
 <section>
-    <h2 class="section-title">Project Impact (Live KPI)</h2>
+    <h2 class="section-title">Project Impact</h2>
     <div class="cards">
         <div class="card">
             <div class="kpi" id="kpi1">0</div>
@@ -171,18 +68,18 @@ footer{
     <h2 class="section-title">My Journey</h2>
     <div class="timeline">
         <div class="timeline-item">
-            <h3>MCA 2023</h3>
-            <p>MITS – Built strong technical foundation.</p>
+            <h3>MCA 2023 – MITS</h3>
+            <p>Strong foundation in analytics & enterprise systems.</p>
         </div>
 
         <div class="timeline-item">
             <h3>Wipro Experience</h3>
-            <p>Worked on SAP Analytics Cloud Planning & Reporting.</p>
+            <p>Worked on SAP Analytics Cloud Planning & Reporting solutions.</p>
         </div>
 
         <div class="timeline-item">
             <h3>KIA Motors Project</h3>
-            <p>Dealer performance dashboards and financial planning solutions.</p>
+            <p>Built dealer performance dashboards & financial planning models.</p>
         </div>
     </div>
 </section>
@@ -192,28 +89,8 @@ footer{
     <p>Contact: yourmail@gmail.com</p>
 </footer>
 
-<script>
-function animateValue(id, start, end, duration) {
-    let obj = document.getElementById(id);
-    let range = end - start;
-    let current = start;
-    let increment = end > start ? 1 : -1;
-    let stepTime = Math.abs(Math.floor(duration / range));
-    let timer = setInterval(function() {
-        current += increment;
-        obj.innerHTML = current;
-        if (current == end) {
-            clearInterval(timer);
-        }
-    }, stepTime);
-}
-
-window.onload = function(){
-    animateValue("kpi1",0,25,2000);
-    animateValue("kpi2",0,8,2000);
-    animateValue("kpi3",0,15,2000);
-}
-</script>
+<!-- External JS -->
+<script src="script.js"></script>
 
 </body>
 </html>
