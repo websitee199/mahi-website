@@ -1,43 +1,21 @@
-const botText = document.getElementById("botText");
-const startBtn = document.getElementById("startBtn");
+function animateValue(id, start, end, duration) {
+    let obj = document.getElementById(id);
+    let range = end - start;
+    let current = start;
+    let increment = end > start ? 1 : -1;
+    let stepTime = Math.abs(Math.floor(duration / range));
 
-let userName = "";
-let step = 0;
-
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-const recognition = new SpeechRecognition();
-
-recognition.lang = "en-US";
-
-function speak(text) {
-    const speech = new SpeechSynthesisUtterance(text);
-    speech.lang = "en-US";
-    speech.rate = 1;
-    speech.pitch = 1;
-    window.speechSynthesis.speak(speech);
-    botText.innerText = text;
+    let timer = setInterval(function() {
+        current += increment;
+        obj.innerHTML = current;
+        if (current == end) {
+            clearInterval(timer);
+        }
+    }, stepTime);
 }
 
-window.onload = () => {
-    setTimeout(() => {
-        speak("Hi, what is your name?");
-        step = 1;
-    }, 1000);
-};
-
-startBtn.onclick = () => {
-    recognition.start();
-};
-
-recognition.onresult = function(event) {
-    const transcript = event.results[0][0].transcript;
-
-    if (step === 1) {
-        userName = transcript;
-        speak("Nice to meet you " + userName + 
-              ". Welcome to our newly launched website. " +
-              "This platform is designed to provide interactive experiences, smart solutions, and modern digital services.");
-        step = 2;
-    }
-};
-
+window.onload = function(){
+    animateValue("kpi1",0,25,2000);
+    animateValue("kpi2",0,8,2000);
+    animateValue("kpi3",0,15,2000);
+}
