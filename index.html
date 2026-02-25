@@ -3,85 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mahesh | SAP Analytics Cloud</title>
+<title>Mahesh  babu K | 3D Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
+<!-- Three.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 
 <body>
 
-<header>
-    <h1>MAHESH BABU</h1>
-    <h2 class="glow">SAP Analytics Cloud Specialist</h2>
-    <p class="subtitle">
-        Planning | Reporting | Data Actions | Advanced Formulas
-    </p>
-    <a href="#skills" class="btn">Explore My SAC World</a>
-</header>
+<!-- 3D Background -->
+<canvas id="bg"></canvas>
 
-<section id="skills">
-    <h2 class="section-title">SAC Expertise</h2>
-    <div class="cards">
-        <div class="card">
-            <h3>Planning Models</h3>
-            <p>Organizational & Account Dimensions, Input Forms, Version Management.</p>
-        </div>
+<!-- Glass Container -->
+<div class="glass">
+    <h1>Welcome to My 3D World 🚀</h1>
+    <p>I build Interactive 3D Cloud & Web Experiences.</p>
+    <button onclick="openForm()">Contact Me</button>
+</div>
 
-        <div class="card">
-            <h3>Data Actions</h3>
-            <p>Copy Allocation, Advanced Formula, Cross Model Copy Implementation.</p>
-        </div>
+<!-- Chatbot Icon with Logo -->
+<div class="chat-icon" onclick="toggleChat()">
+    <img src="logo.png" alt="Chatbot Logo">
+</div>
 
-        <div class="card">
-            <h3>Analytics & Stories</h3>
-            <p>Interactive Dashboards & KPI Tracking.</p>
-        </div>
+<!-- Chatbot -->
+<div class="chat-box" id="chatBox">
+    <div class="chat-header">
+        <img src="logo.png" class="chat-logo">
+        Mahesh Assistant
     </div>
-</section>
 
-<section>
-    <h2 class="section-title">Contact Me</h2>
-    <div class="contact-box">
-        <p>Email: 
-            <a href="mailto:mbkodipunjula@gmail.com" class="email-link">
-                mbkodipunjula@gmail.com
-            </a>
-        </p>
+    <div class="chat-messages" id="chatMessages"></div>
 
-        <p>If you have any queries, fill this form:</p>
-
-        <a href="https://forms.gle/https://forms.gle/CT9ZBfNMCjjyndjs7" target="_blank" class="btn">
-            Fill Google Form
-        </a>
-    </div>
-</section>
-
-<footer>
-    <p>© 2026 MBK. All Rights Reserved.</p>
-</footer>
-
-<!-- Chatbot UI -->
-<div class="chatbot-container">
-    <div class="avatar" id="avatar"></div>
-
-    <div class="chat-box" id="chatBox">
-        <div class="chat-header">
-            SAC Assistant
-            <span id="closeChat">✖</span>
-        </div>
-        <div class="chat-messages" id="chatMessages"></div>
-        <div class="chat-input">
-            <input type="text" id="userInput" placeholder="Ask about SAP SAC...">
-            <button onclick="sendMessage()">Send</button>
-            <button onclick="startListening()">🎤</button>
-        </div>
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Ask something...">
+        <button onclick="sendMessage()">Send</button>
     </div>
 </div>
 
 <script src="script.js"></script>
-<script src="chatbot.js"></script>
-
 </body>
 </html>
-
