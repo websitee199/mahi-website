@@ -12,7 +12,7 @@ const closeChat = document.getElementById("closeChat");
 // Open Chat
 avatar.onclick = () => {
     chatBox.style.display = "block";
-    botReply("Hi Mahesh! I am your SAP Analytics Cloud assistant. How can I help you?");
+    botReply("Welcome user! Hope you have a great experience with our website. If you have any queries, feel free to reach Mahesh by filling the google form below .");
 };
 
 // Close Chat
@@ -90,3 +90,4 @@ function startListening() {
         sendMessage();
     };
 }
+
