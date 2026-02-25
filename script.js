@@ -1,93 +1,89 @@
-// ====== WEBSITE LOADED ======
-console.log("SAP SAC Website Loaded");
+// 3D Background
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('bg')});
+renderer.setSize(window.innerWidth, window.innerHeight);
 
-// ====== CHATBOT LOGIC ======
+const geometry = new THREE.BufferGeometry();
+const vertices = [];
 
-const avatar = document.getElementById("avatar");
-const chatBox = document.getElementById("chatBox");
-const chatMessages = document.getElementById("chatMessages");
-const userInput = document.getElementById("userInput");
-const closeChat = document.getElementById("closeChat");
+for (let i = 0; i < 5000; i++) {
+    vertices.push(
+        THREE.MathUtils.randFloatSpread(2000),
+        THREE.MathUtils.randFloatSpread(2000),
+        THREE.MathUtils.randFloatSpread(2000)
+    );
+}
 
-// Open Chat
-avatar.onclick = () => {
-    chatBox.style.display = "block";
-    botReply("Welcome user! Hope you have a great experience with our website. If you have any queries, feel free to reach Mahesh by filling the google form below .");
-};
+geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+const material = new THREE.PointsMaterial({ color: 0x00c6ff });
+const particles = new THREE.Points(geometry, material);
 
-// Close Chat
-closeChat.onclick = () => {
-    chatBox.style.display = "none";
-};
+scene.add(particles);
+camera.position.z = 500;
+
+function animate() {
+    requestAnimationFrame(animate);
+    particles.rotation.x += 0.0005;
+    particles.rotation.y += 0.0005;
+    renderer.render(scene, camera);
+}
+animate();
+
+window.addEventListener("resize",()=>{
+renderer.setSize(window.innerWidth, window.innerHeight);
+camera.aspect = window.innerWidth/window.innerHeight;
+camera.updateProjectionMatrix();
+});
+
+// Chat Toggle
+function toggleChat(){
+let chat = document.getElementById("chatBox");
+chat.style.display = chat.style.display === "flex" ? "none" : "flex";
+}
+
+// AI Typing Effect
+function typeEffect(text){
+let chat = document.getElementById("chatMessages");
+let msg = document.createElement("div");
+chat.appendChild(msg);
+
+let i = 0;
+function typing(){
+if(i < text.length){
+msg.innerHTML += text.charAt(i);
+i++;
+setTimeout(typing, 30);
+}
+}
+typing();
+}
 
 // Send Message
-function sendMessage() {
-    const message = userInput.value.trim();
-    if (!message) return;
+function sendMessage(){
+let input = document.getElementById("userInput");
+let message = input.value.trim();
+if(message === "") return;
 
-    addMessage("You", message);
-    generateResponse(message);
-    userInput.value = "";
+let chat = document.getElementById("chatMessages");
+chat.innerHTML += "<div><b>You:</b> " + message + "</div>";
+
+let reply = "Thanks for reaching out! I will respond shortly.";
+
+if(message.toLowerCase().includes("hello"))
+reply = "Hello 👋 Welcome to mahesh  3D portfolio!";
+if(message.toLowerCase().includes("project"))
+reply = "I specialize in 3D Cloud & SAP Analytics projects.";
+if(message.toLowerCase().includes("contact"))
+reply = "Please click the Contact Me button to fill the form.";
+
+typeEffect("Bot: " + reply);
+
+chat.scrollTop = chat.scrollHeight;
+input.value = "";
 }
 
-// Add Message to UI
-function addMessage(sender, text) {
-    const div = document.createElement("div");
-    div.innerHTML = `<strong>${sender}:</strong> ${text}`;
-    chatMessages.appendChild(div);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+// Google Form Redirect
+function openForm(){
+window.open("https://forms.gle/S9LiHaBHiFqsU85H8", "_blank");
 }
-
-// Bot Reply Wrapper
-function botReply(text) {
-    addMessage("Bot", text);
-    speak(text);
-}
-
-// Generate Response
-function generateResponse(input) {
-
-    let reply = "I can help you with SAP Analytics Cloud Planning and Reporting.";
-
-    const msg = input.toLowerCase();
-
-    if (msg.includes("planning")) {
-        reply = "SAP Analytics Cloud Planning supports budgeting, forecasting, allocations and version management.";
-    }
-    else if (msg.includes("data action")) {
-        reply = "Data Actions automate copy, allocation and advanced formula calculations in SAC.";
-    }
-    else if (msg.includes("dashboard")) {
-        reply = "Dashboards in SAC provide KPI tracking, drill-down analysis and interactive visualizations.";
-    }
-    else if (msg.includes("project")) {
-        reply = "Mahesh worked on Dealer Performance and Financial Planning dashboards.";
-    }
-    else if (msg.includes("who are you")) {
-        reply = "I am your interactive SAP Analytics Cloud assistant.";
-    }
-
-    botReply(reply);
-}
-
-// ====== VOICE OUTPUT ======
-function speak(text) {
-    const speech = new SpeechSynthesisUtterance(text);
-    speech.rate = 1;
-    speech.pitch = 1;
-    speechSynthesis.speak(speech);
-}
-
-// ====== VOICE INPUT ======
-function startListening() {
-    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    recognition.lang = "en-US";
-    recognition.start();
-
-    recognition.onresult = function(event) {
-        const transcript = event.results[0][0].transcript;
-        userInput.value = transcript;
-        sendMessage();
-    };
-}
-
