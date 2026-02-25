@@ -1,23 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Mahesh | SAP Analytics Cloud</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahesh | SAP Analytics Cloud</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
-    <!-- External CSS -->
-    <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
     <h1>MAHESH BABU</h1>
-    <h1 class="glow">SAP Analytics Cloud Specialist</h1>
+    <h2 class="glow">SAP Analytics Cloud Specialist</h2>
     <p class="subtitle">
         Planning | Reporting | Data Actions | Advanced Formulas
     </p>
@@ -39,58 +35,52 @@
 
         <div class="card">
             <h3>Analytics & Stories</h3>
-            <p>Interactive Dashboards, KPI Tracking, Dealer Performance Insights.</p>
+            <p>Interactive Dashboards & KPI Tracking.</p>
         </div>
     </div>
 </section>
 
 <section>
-    <h2 class="section-title">Project Impact</h2>
-    <div class="cards">
-        <div class="card">
-            <div class="kpi" id="kpi1">0</div>
-            <p>Dashboards Built</p>
-        </div>
+    <h2 class="section-title">Contact Me</h2>
+    <div class="contact-box">
+        <p>Email: 
+            <a href="mailto:mbkodipunjula@gmail.com" class="email-link">
+                mbkodipunjula@gmail.com
+            </a>
+        </p>
 
-        <div class="card">
-            <div class="kpi" id="kpi2">0</div>
-            <p>Planning Models</p>
-        </div>
+        <p>If you have any queries, fill this form:</p>
 
-        <div class="card">
-            <div class="kpi" id="kpi3">0</div>
-            <p>Data Actions Created</p>
-        </div>
-    </div>
-</section>
-
-<section>
-    <h2 class="section-title">My Journey</h2>
-    <div class="timeline">
-        <div class="timeline-item">
-            <h3>MCA 2023 – MITS</h3>
-            <p>Strong foundation in analytics & enterprise systems.</p>
-        </div>
-
-        <div class="timeline-item">
-            <h3>Wipro Experience</h3>
-            <p>Worked on SAP Analytics Cloud Planning & Reporting solutions.</p>
-        </div>
-
-        <div class="timeline-item">
-            <h3>KIA Motors Project</h3>
-            <p>Built dealer performance dashboards & financial planning models.</p>
-        </div>
+        <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" target="_blank" class="btn">
+            Fill Google Form
+        </a>
     </div>
 </section>
 
 <footer>
-    <h3>Let’s Build Intelligent Planning Solutions</h3>
-    <p>Contact: yourmail@gmail.com</p>
+    <p>© 2026 MBK. All Rights Reserved.</p>
 </footer>
 
-<!-- External JS -->
+<!-- Chatbot UI -->
+<div class="chatbot-container">
+    <div class="avatar" id="avatar"></div>
+
+    <div class="chat-box" id="chatBox">
+        <div class="chat-header">
+            SAC Assistant
+            <span id="closeChat">✖</span>
+        </div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Ask about SAP SAC...">
+            <button onclick="sendMessage()">Send</button>
+            <button onclick="startListening()">🎤</button>
+        </div>
+    </div>
+</div>
+
 <script src="script.js"></script>
+<script src="chatbot.js"></script>
 
 </body>
 </html>
