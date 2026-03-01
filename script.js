@@ -1,89 +1,105 @@
-// 3D Background
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('bg')});
-renderer.setSize(window.innerWidth, window.innerHeight);
-
-const geometry = new THREE.BufferGeometry();
-const vertices = [];
-
-for (let i = 0; i < 5000; i++) {
-    vertices.push(
-        THREE.MathUtils.randFloatSpread(2000),
-        THREE.MathUtils.randFloatSpread(2000),
-        THREE.MathUtils.randFloatSpread(2000)
-    );
+// Tabs
+function showTab(id){
+  document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
 
-geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-const material = new THREE.PointsMaterial({ color: 0x00c6ff });
-const particles = new THREE.Points(geometry, material);
+// 3D Particle Universe
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('bg'), alpha:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+camera.position.z = 50;
 
-scene.add(particles);
-camera.position.z = 500;
+const particlesGeometry = new THREE.BufferGeometry();
+const particlesCount = 2000;
+const posArray = new Float32Array(particlesCount * 3);
 
-function animate() {
-    requestAnimationFrame(animate);
-    particles.rotation.x += 0.0005;
-    particles.rotation.y += 0.0005;
-    renderer.render(scene, camera);
+for(let i=0;i<particlesCount*3;i++){
+  posArray[i] = (Math.random() - 0.5) * 200;
+}
+
+particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+const particlesMaterial = new THREE.PointsMaterial({size:0.7});
+const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+scene.add(particlesMesh);
+
+function animate(){
+  requestAnimationFrame(animate);
+  particlesMesh.rotation.y += 0.0008;
+  renderer.render(scene, camera);
 }
 animate();
 
-window.addEventListener("resize",()=>{
-renderer.setSize(window.innerWidth, window.innerHeight);
-camera.aspect = window.innerWidth/window.innerHeight;
-camera.updateProjectionMatrix();
+// Chat
+const chatIcon = document.getElementById("chatIcon");
+const chatbot = document.getElementById("chatbot");
+const chatBody = document.getElementById("chatBody");
+const userInput = document.getElementById("userInput");
+const bgMusic = document.getElementById("bgMusic");
+
+let userName = localStorage.getItem("mbkUser") || "";
+let started = false;
+
+chatIcon.onclick = () => {
+  chatbot.style.display = chatbot.style.display === "block" ? "none" : "block";
+};
+
+function typeEffect(text, callback){
+  let i = 0;
+  const div = document.createElement("div");
+  chatBody.appendChild(div);
+
+  const interval = setInterval(()=>{
+    div.textContent += text[i];
+    i++;
+    if(i >= text.length){
+      clearInterval(interval);
+      if(callback) callback();
+    }
+  }, 25);
+}
+
+function speak(text){
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.rate = 1;
+  speechSynthesis.speak(utterance);
+}
+
+document.addEventListener("click", function init(){
+  if(started) return;
+  started = true;
+
+  chatbot.style.display = "block";
+  bgMusic.volume = 0.2;
+  bgMusic.play().catch(()=>{});
+
+  if(userName){
+    const greetBack = "Welcome back " + userName;
+    typeEffect(greetBack);
+    speak(greetBack);
+  } else {
+    const greeting = "Welcome to MBK Motivation. What is your name?";
+    typeEffect(greeting);
+    speak(greeting);
+  }
+
+  document.removeEventListener("click", init);
 });
 
-// Chat Toggle
-function toggleChat(){
-let chat = document.getElementById("chatBox");
-chat.style.display = chat.style.display === "flex" ? "none" : "flex";
-}
-
-// AI Typing Effect
-function typeEffect(text){
-let chat = document.getElementById("chatMessages");
-let msg = document.createElement("div");
-chat.appendChild(msg);
-
-let i = 0;
-function typing(){
-if(i < text.length){
-msg.innerHTML += text.charAt(i);
-i++;
-setTimeout(typing, 30);
-}
-}
-typing();
-}
-
-// Send Message
-function sendMessage(){
-let input = document.getElementById("userInput");
-let message = input.value.trim();
-if(message === "") return;
-
-let chat = document.getElementById("chatMessages");
-chat.innerHTML += "<div><b>You:</b> " + message + "</div>";
-
-let reply = "Thanks for reaching out! I will respond shortly.";
-
-if(message.toLowerCase().includes("hello"))
-reply = "Hello 👋 Welcome to mahesh  3D portfolio!";
-if(message.toLowerCase().includes("project"))
-reply = "I specialize in 3D Cloud & SAP Analytics projects.";
-if(message.toLowerCase().includes("contact"))
-reply = "Please click the Contact Me button to fill the form.";
-
-typeEffect("Bot: " + reply);
-
-chat.scrollTop = chat.scrollHeight;
-input.value = "";
-}
-
-// Google Form Redirect
-function openForm(){
-window.open("https://forms.gle/S9LiHaBHiFqsU85H8", "_blank");
-}
+userInput.addEventListener("keypress", function(e){
+  if(e.key === "Enter"){
+    if(!userName){
+      userName = userInput.value;
+      localStorage.setItem("mbkUser", userName);
+      const reply = "Nice to meet you " + userName;
+      typeEffect(reply);
+      speak(reply);
+    } else {
+      const reply = "Stay motivated " + userName;
+      typeEffect(reply);
+      speak(reply);
+    }
+    userInput.value = "";
+  }
+});
