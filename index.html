@@ -1,49 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mahesh  babu K | 3D Portfolio</title>
-
-<link rel="stylesheet" href="style.css">
-
-<!-- Three.js CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <meta charset="UTF-8">
+  <title>MBK Motivation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- 3D Background -->
 <canvas id="bg"></canvas>
 
-<!-- Glass Container -->
-<div class="glass">
-    <h1>Welcome to My 3D World 🚀</h1>
-    <p>I build Interactive 3D Cloud & Web Experiences.</p>
-    <button onclick="openForm()">Contact Me</button>
+<header>
+  <h1>MBK Motivation</h1>
+  <nav>
+    <a onclick="showTab('home')">Home</a>
+    <a onclick="showTab('tata')">Ratan Tata</a>
+    <a onclick="showTab('churchill')">Churchill</a>
+    <a onclick="showTab('sharma')">Robin Sharma</a>
+    <a onclick="showTab('share')">Share Your Thoughts</a>
+    <a onclick="showTab('contact')">Contact</a>
+  </nav>
+</header>
+
+<section id="home" class="tab active glass">
+  <h2>Welcome to MBK Motivation</h2>
+  <p>Fuel Your Mind. Elevate Your Future.</p>
+</section>
+
+<section id="tata" class="tab glass">
+  <h2>Ratan Tata</h2>
+  <p>"I don't believe in taking right decisions. I take decisions and then make them right."</p>
+</section>
+
+<section id="churchill" class="tab glass">
+  <h2>Winston Churchill</h2>
+  <p>"Success is not final, failure is not fatal: It is the courage to continue that counts."</p>
+</section>
+
+<section id="sharma" class="tab glass">
+  <h2>Robin Sharma</h2>
+  <p>"Dream big. Start small. Act now."</p>
+</section>
+
+<section id="share" class="tab glass">
+  <h2>Share Your Thoughts</h2>
+  <textarea placeholder="Write your thoughts..."></textarea>
+  <button>Submit</button>
+</section>
+
+<section id="contact" class="tab glass">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:finetechgroup009@gmail.com">finetechgroup009@gmail.com</a></p>
+</section>
+
+<footer>
+  © 2026 MBK. All Rights Reserved.
+</footer>
+
+<div id="chatIcon">🤖</div>
+
+<div class="chatbot" id="chatbot">
+  <div class="chat-header">
+    <div class="avatar3d"></div>
+    MBK Assistant
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <input type="text" id="userInput" placeholder="Type here..." />
 </div>
 
-<!-- Chatbot Icon with Logo -->
-<div class="chat-icon" onclick="toggleChat()">
-    <img src="https://github.com/websitee199/mahi-website/blob/main/bot.png" alt="Chatbot Logo">
-</div>
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=ambient-110997.mp3" type="audio/mp3">
+</audio>
 
-<!-- Chatbot -->
-<div class="chat-box" id="chatBox">
-    <div class="chat-header">
-        <img src="https://github.com/websitee199/mahi-website/blob/main/bot.png" class="chat-logo">
-        Mahesh Assistant
-    </div>
-
-    <div class="chat-messages" id="chatMessages"></div>
-
-    <div class="chat-input">
-        <input type="text" id="userInput" placeholder="Ask something...">
-        <button onclick="sendMessage()">Send</button>
-    </div>
-</div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="script.js"></script>
+
 </body>
 </html>
-
