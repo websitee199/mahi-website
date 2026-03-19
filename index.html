@@ -1,59 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Work Force</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work Force</title>
+
+<style>
+
+/* 🌌 Background */
+
+body{
+  margin:0;
+  font-family:Segoe UI, sans-serif;
+  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  color:white;
+  text-align:center;
+}
+
+/* Container */
+
+.container{
+  padding:40px 20px;
+}
+
+/* Logo */
+
+h1{
+  font-size:42px;
+  letter-spacing:2px;
+  text-shadow:0 0 20px rgba(0,255,255,0.7);
+}
+
+.tagline{color:#ddd;margin-top:10px;}
+
+/* 🌟 ICON GRID */
+
+.icon-grid{
+  margin-top:50px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:25px;
+  max-width:800px;
+  margin:auto;
+}
+
+/* ICON CARD */
+
+.icon-card{
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(12px);
+  border-radius:18px;
+  padding:30px 10px;
+  cursor:pointer;
+  transition:0.25s;
+  box-shadow:0 0 20px rgba(0,255,255,0.2);
+  border:3px solid transparent;
+}
+
+.icon-card:nth-child(1){border-color:#00ff88;}
+.icon-card:nth-child(2){border-color:#00d4ff;}
+.icon-card:nth-child(3){border-color:#ffd700;}
+.icon-card:nth-child(4){border-color:#ff4dd2;}
+
+.icon-card:hover{
+  transform:translateY(-10px) scale(1.08);
+  box-shadow:0 0 35px rgba(0,255,255,0.8);
+}
+
+.icon{font-size:42px;}
+
+#infoText{margin-top:40px;color:#ccc;}
+
+/* 🔥 LOADER */
+
+#loader{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,0.9);
+  display:flex;align-items:center;justify-content:center;
+  z-index:9999;opacity:0;pointer-events:none;
+  transition:0.2s;
+}
+
+#loader img{
+  width:160px;border-radius:20px;
+  box-shadow:0 0 40px white;
+  animation: zoomSpin 0.4s ease;
+}
+
+@keyframes zoomSpin{
+  from{transform:scale(0.6) rotate(-10deg); opacity:0;}
+  to{transform:scale(1) rotate(0); opacity:1;}
+}
+
+#loader.show{opacity:1;pointer-events:auto;}
+
+/* 📞 CONTACT */
+
+.contact{margin-top:70px;font-size:18px;line-height:1.8;}
+
+.contact a{color:#00ffff;text-decoration:none;font-weight:bold;}
+
+footer{
+  margin-top:40px;padding:15px;
+  background:rgba(0,0,0,0.3);
+  font-size:14px;color:#ccc;
+}
+
+/* 🤖 CHATBOT AVATAR */
+
+#bot{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:#00d4ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:40px;
+  cursor:pointer;
+  box-shadow:0 0 25px rgba(0,255,255,0.9);
+  animation:pulse 2s infinite;
+  z-index:999;
+}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 15px #00ffff;}
+  50%{box-shadow:0 0 35px #00ffff;}
+  100%{box-shadow:0 0 15px #00ffff;}
+}
+
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <!-- Logo -->
-    <header>
-      <h1>WORK FORCE</h1>
-      <p class="tagline">
-        Where your Imagination meets reality • Your work in our hands.. end2end Labour services
-      </p>
-    </header>
+<header>
+<h1>WORK FORCE</h1>
+<p class="tagline">
+Where your Imagination meets reality • Your work in our hands.. end2end Labour services
+</p>
+</header>
 
-    <!-- Clickable Icon Grid -->
-    <section class="icon-grid">
+<section class="icon-grid">
 
-      <div class="icon-card"
-           data-text="FARMING SERVICES"
-           onclick="location.href='farming.html'">
-        <div class="icon">🌾🚜</div>
-      </div>
+<div class="icon-card" data-text="FARMING SERVICES"
+onclick="goPage('farming.html')">
+<div class="icon">🌾🚜</div>
+</div>
 
-      <div class="icon-card"
-           data-text="CONSTRUCTION SERVICES"
-           onclick="location.href='construction.html'">
-        <div class="icon">👷‍♂️</div>
-      </div>
+<div class="icon-card" data-text="CONSTRUCTION SERVICES"
+onclick="goPage('construction.html')">
+<div class="icon">👷‍♂️</div>
+</div>
 
-      <div class="icon-card"
-           data-text="DAILY WORKS"
-           onclick="location.href='daily.html'">
-        <div class="icon">💼⚒️</div>
-      </div>
+<div class="icon-card" data-text="DAILY WORKS"
+onclick="goPage('daily.html')">
+<div class="icon">💼⚒️</div>
+</div>
 
-      <div class="icon-card"
-           data-text="FEED BACK"
-           onclick="location.href='feedback.html'">
-        <div class="icon">📝</div>
-      </div>
+<div class="icon-card" data-text="FEED BACK"
+onclick="goPage('feedback.html')">
+<div class="icon">📝</div>
+</div>
 
-    </section>
+</section>
 
-    <!-- Dynamic Hover Text -->
-    <div id="infoText">Hover an icon</div>
+<div id="infoText">Hover an icon</div>
 
-  </div>
+<div class="contact">
+<h2>Contact</h2>
 
-  <script src="script.js"></script>
+📧 Email:
+<a href="mailto:mbkodipunjula@gmail.com">
+mbkodipunjula@gmail.com
+</a>
+<br>
+
+📱 Mobile:
+<a href="tel:9160965667">
+9160965667
+</a>
+</div>
+
+</div>
+
+<!-- 🔥 Loader -->
+
+<div id="loader">
+<img src="https://raw.githubusercontent.com/websitee199/mahi-website/main/abc.png">
+</div>
+
+<!-- 🤖 Chatbot Avatar -->
+
+<div id="bot" onclick="speakMessage()">🤖</div>
+
+<footer>
+© 2026 All Rights Reserved — Mahesh Babuk
+</footer>
+
+<script>
+
+/* Hover Text */
+
+const cards=document.querySelectorAll(".icon-card");
+const info=document.getElementById("infoText");
+
+cards.forEach(card=>{
+  card.onmouseenter=()=>info.textContent=card.dataset.text;
+  card.onmouseleave=()=>info.textContent="Hover an icon";
+});
+
+/* 🚀 Redirect */
+
+function goPage(url){
+  const loader=document.getElementById("loader");
+  loader.classList.add("show");
+  setTimeout(()=>location.href=url,100);
+}
+
+/* 🔊 Female Voice Greeting */
+
+const message =
+"Hey user, welcome to Work Force. Your search should stop here. Here are your end to end solutions.";
+
+function speakMessage(){
+
+  const speech = new SpeechSynthesisUtterance(message);
+
+  const voices = speechSynthesis.getVoices();
+
+  const femaleVoice =
+    voices.find(v => v.name.includes("Female")) ||
+    voices.find(v => v.name.includes("Google UK English Female")) ||
+    voices[1];
+
+  speech.voice = femaleVoice;
+  speech.rate = 0.95;
+  speech.pitch = 1.2;
+
+  speechSynthesis.speak(speech);
+}
+
+/* Auto greet on page load */
+
+window.onload = ()=>{
+  setTimeout(speakMessage,700);
+};
+
+</script>
 
 </body>
 </html>
