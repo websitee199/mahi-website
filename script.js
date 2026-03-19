@@ -8,16 +8,16 @@ cards.forEach(card=>{
   card.onmouseleave = () => info.textContent = "Hover an icon";
 });
 
-/* 🚀 Redirect with loader */
+/* 🚀 Redirect */
 
 function goPage(url){
   const loader = document.getElementById("loader");
   loader.classList.add("show");
 
-  setTimeout(()=> location.href = url, 100); // 0.10 sec
+  setTimeout(()=> location.href = url, 100);
 }
 
-/* 🔊 Voice Greeting */
+/* 🔊 Voice Message */
 
 const message =
 "Hey user, welcome to Work Force. Your search should stop here. Here are your end to end solutions.";
@@ -31,7 +31,7 @@ function speakMessage(){
   const femaleVoice =
     voices.find(v => v.name.includes("Female")) ||
     voices.find(v => v.name.includes("Google UK English Female")) ||
-    voices[1];
+    voices[0];
 
   speech.voice = femaleVoice;
   speech.rate = 0.95;
@@ -40,8 +40,9 @@ function speakMessage(){
   speechSynthesis.speak(speech);
 }
 
-/* Auto greet on page load */
+/* ✅ FIX: Auto greet after FIRST CLICK anywhere */
 
-window.onload = ()=>{
-  setTimeout(speakMessage,700);
-};
+document.addEventListener("click", function firstClick(){
+  speakMessage();
+  document.removeEventListener("click", firstClick);
+});
