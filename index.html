@@ -1,79 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>MBK Motivation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Work Force</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-<canvas id="bg"></canvas>
+  <div class="container">
 
-<header>
-  <h1>MBK Motivation</h1>
-  <nav>
-    <a onclick="showTab('home')">Home</a>
-    <a onclick="showTab('tata')">Ratan Tata</a>
-    <a onclick="showTab('churchill')">Churchill</a>
-    <a onclick="showTab('sharma')">Robin Sharma</a>
-    <a onclick="showTab('share')">Share Your Thoughts</a>
-    <a onclick="showTab('contact')">Contact</a>
-  </nav>
-</header>
+    <!-- Logo -->
+    <header>
+      <h1>WORK FORCE</h1>
+      <p class="tagline">
+        Where your Imagination meets reality • Your work in our hands.. end2end Labour services
+      </p>
+    </header>
 
-<section id="home" class="tab active glass">
-  <h2>Welcome to MBK Motivation</h2>
-  <p>Fuel Your Mind. Elevate Your Future.</p>
-</section>
+    <!-- Clickable Icon Grid -->
+    <section class="icon-grid">
 
-<section id="tata" class="tab glass">
-  <h2>Ratan Tata</h2>
-  <p>"I don't believe in taking right decisions. I take decisions and then make them right."</p>
-</section>
+      <div class="icon-card"
+           data-text="FARMING SERVICES"
+           onclick="location.href='farming.html'">
+        <div class="icon">🌾🚜</div>
+      </div>
 
-<section id="churchill" class="tab glass">
-  <h2>Winston Churchill</h2>
-  <p>"Success is not final, failure is not fatal: It is the courage to continue that counts."</p>
-</section>
+      <div class="icon-card"
+           data-text="CONSTRUCTION SERVICES"
+           onclick="location.href='construction.html'">
+        <div class="icon">👷‍♂️</div>
+      </div>
 
-<section id="sharma" class="tab glass">
-  <h2>Robin Sharma</h2>
-  <p>"Dream big. Start small. Act now."</p>
-</section>
+      <div class="icon-card"
+           data-text="DAILY WORKS"
+           onclick="location.href='daily.html'">
+        <div class="icon">💼⚒️</div>
+      </div>
 
-<section id="share" class="tab glass">
-  <h2>Share Your Thoughts</h2>
-  <textarea placeholder="Write your thoughts..."></textarea>
-  <button>Submit</button>
-</section>
+      <div class="icon-card"
+           data-text="FEED BACK"
+           onclick="location.href='feedback.html'">
+        <div class="icon">📝</div>
+      </div>
 
-<section id="contact" class="tab glass">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:finetechgroup009@gmail.com">finetechgroup009@gmail.com</a></p>
-</section>
+    </section>
 
-<footer>
-  © 2026 MBK. All Rights Reserved.
-</footer>
+    <!-- Dynamic Hover Text -->
+    <div id="infoText">Hover an icon</div>
 
-<div id="chatIcon">🤖</div>
-
-<div class="chatbot" id="chatbot">
-  <div class="chat-header">
-    <div class="avatar3d"></div>
-    MBK Assistant
   </div>
-  <div class="chat-body" id="chatBody"></div>
-  <input type="text" id="userInput" placeholder="Type here..." />
-</div>
 
-<audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=ambient-110997.mp3" type="audio/mp3">
-</audio>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-<script src="script.js"></script>
+  <script src="script.js"></script>
 
 </body>
 </html>
