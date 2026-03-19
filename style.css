@@ -1,83 +1,120 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
+/* 🌌 Background */
+
+body{
+  margin:0;
+  font-family:Segoe UI, sans-serif;
+  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  color:white;
+  text-align:center;
 }
 
-body {
-  height: 100vh;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
+.container{padding:40px 20px;}
+
+h1{
+  font-size:42px;
+  letter-spacing:2px;
+  text-shadow:0 0 20px rgba(0,255,255,0.7);
 }
 
-.container {
-  text-align: center;
+.tagline{color:#ddd;margin-top:10px;}
+
+/* 🌟 ICON GRID */
+
+.icon-grid{
+  margin-top:50px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:25px;
+  max-width:800px;
+  margin:auto;
 }
 
-/* Header */
+/* ICON CARD */
 
-header h1 {
-  font-size: 3rem;
-  letter-spacing: 2px;
+.icon-card{
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(12px);
+  border-radius:18px;
+  padding:30px 10px;
+  cursor:pointer;
+  transition:0.25s;
+  box-shadow:0 0 20px rgba(0,255,255,0.2);
+  border:3px solid transparent;
 }
 
-.tagline {
-  margin-top: 10px;
-  opacity: 0.85;
+.icon-card:nth-child(1){border-color:#00ff88;}
+.icon-card:nth-child(2){border-color:#00d4ff;}
+.icon-card:nth-child(3){border-color:#ffd700;}
+.icon-card:nth-child(4){border-color:#ff4dd2;}
+
+.icon-card:hover{
+  transform:translateY(-10px) scale(1.08);
+  box-shadow:0 0 35px rgba(0,255,255,0.8);
 }
 
-/* Icon Grid */
+.icon{font-size:42px;}
 
-.icon-grid {
-  margin-top: 60px;
-  display: flex;
-  gap: 40px;
-  justify-content: center;
+#infoText{margin-top:40px;color:#ccc;}
+
+/* 🔥 Loader */
+
+#loader{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,0.9);
+  display:flex;align-items:center;justify-content:center;
+  z-index:9999;opacity:0;pointer-events:none;
+  transition:0.2s;
 }
 
-/* Round Icons */
-
-.icon-card {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(20px);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  cursor: pointer;
-  transition: 0.4s;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+#loader img{
+  width:160px;border-radius:20px;
+  box-shadow:0 0 40px white;
+  animation: zoomSpin 0.4s ease;
 }
 
-.icon {
-  font-size: 3rem;
-  transition: 0.4s;
+@keyframes zoomSpin{
+  from{transform:scale(0.6) rotate(-10deg); opacity:0;}
+  to{transform:scale(1) rotate(0); opacity:1;}
 }
 
-/* Hover Effects */
+#loader.show{opacity:1;pointer-events:auto;}
 
-.icon-card:hover {
-  transform: translateY(-15px) scale(1.1);
-  background: rgba(255,255,255,0.18);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+/* 📞 Contact */
+
+.contact{margin-top:70px;font-size:18px;line-height:1.8;}
+
+.contact a{color:#00ffff;text-decoration:none;font-weight:bold;}
+
+/* 🤖 Chatbot Avatar */
+
+#bot{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:#00d4ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:40px;
+  cursor:pointer;
+  box-shadow:0 0 25px rgba(0,255,255,0.9);
+  animation:pulse 2s infinite;
+  z-index:999;
 }
 
-.icon-card:hover .icon {
-  transform: rotate(8deg) scale(1.2);
+@keyframes pulse{
+  0%{box-shadow:0 0 15px #00ffff;}
+  50%{box-shadow:0 0 35px #00ffff;}
+  100%{box-shadow:0 0 15px #00ffff;}
 }
 
-/* Info Text */
+/* Footer */
 
-#infoText {
-  margin-top: 50px;
-  font-size: 1.3rem;
-  opacity: 0.9;
+footer{
+  margin-top:40px;padding:15px;
+  background:rgba(0,0,0,0.3);
+  font-size:14px;color:#ccc;
 }
